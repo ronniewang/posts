@@ -27,4 +27,19 @@ public class PostsApplicationTests {
                 .andExpect(model().attribute("name", "World"));
     }
 
+    private static final String[] NO_ARGS = {};
+
+    @Rule
+    public OutputCapture out = new OutputCapture();
+
+    @Test
+    public void outputResults() throws Exception {
+        SampleJooqApplication.main(NO_ARGS);
+        assertThat(this.out.toString()).contains("jOOQ Fetch 1 Greg Turnquest");
+        assertThat(this.out.toString()).contains("jOOQ Fetch 2 Craig Walls");
+        assertThat(this.out.toString())
+                .contains("jOOQ SQL " + "[Learning Spring Boot : Greg Turnquest, "
+                        + "Spring Boot in Action : Craig Walls]");
+    }
+
 }
