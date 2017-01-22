@@ -1,13 +1,16 @@
 package wang.ronnie;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.rule.OutputCapture;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +37,7 @@ public class PostsApplicationTests {
 
     @Test
     public void outputResults() throws Exception {
-        SampleJooqApplication.main(NO_ARGS);
+        PostsApplication.main(NO_ARGS);
         assertThat(this.out.toString()).contains("jOOQ Fetch 1 Greg Turnquest");
         assertThat(this.out.toString()).contains("jOOQ Fetch 2 Craig Walls");
         assertThat(this.out.toString())
